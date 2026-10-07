@@ -1,0 +1,40 @@
+---
+author: Crystal Quezada, Dylan Gold, Zineb Tamnat, Jonnathan Zuna Largo
+title: "Data 622_Project Proposal"
+format: pdf
+editor: visual
+---
+
+## Predicting Empty and Full Citi Bike Stations
+
+Research question: Can we predict whether a Citi Bike station will become empty or full within the next 15, 30, or 60 minutes using current station conditions, past bike usage, weather, time, and nearby transportation information?
+
+1.  What type of Machine Learning problem will you solve, and how might citibike, New York City, or New Yorkers use the outputs? You do not necessarily have to achieve these goals but they are useful to have in mind.
+
+    -   The problem we are solving is a binary classification problem. We want to predict whether a Citi Bike station will become empty or full within a certain amount of time. We will test different time periods, such as 15, 30, and 60 minutes, to see how far ahead we can make accurate predictions. The model will use information such as the number of bikes currently at a station, recent bike usage, past usage patterns, time of day, day of the week, weather, and nearby transportation information. Citi Bike could use these predictions to identify stations that are likely to become empty or full and decide where to move bikes. This could help Citi Bike better manage its bike supply. New Yorkers could also use the predictions to find stations that are more likely to have bikes available or have open docks when they arrive.
+
+2.  What data sources are you planning to use, and which if any external data sources will you add? Each project is required to add at least one additional data set/data source and make it available as a documented table in the shared catalog for other teams to potentially use.
+
+    -   Our main data source will be Citi Bike's historical trip and station data. We plan to use information such as station locations, number of available bikes, available docks, trip start and end times, and past station usage. We will add New York City weather data as our required external data source. We will use information such as temperature, rain, snow, and wind to see how weather affects bike usage. We will clean and organize this data and add it to the shared data catalog so other teams can use it. We may also use MTA data, especially subway station and service information. This could help us understand whether nearby subway stations or subway delays affect Citi Bike usage. For example, a subway delay could cause more people to use Citi Bikes instead. Citi Bike’s [data](https://citibikenyc.com/system-data), weather [data](https://weather.com/us/new-york/city/new-york-city/today), MTA [data](https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f/about_data).
+
+3.  What initial approach/model types will you use to solve the problem?
+
+    -   We will start with logistic regression as our main baseline model. This will help us see how factors such as current bike availability, past demand, weather, and time affect the chance of a station becoming empty or full. We may also test models such as Random Forest or gradient boosting. These models can find more complex patterns in the data. For example, having five bikes at a station might be enough during a low-demand period but not enough during rush hour. We will start with simpler models and compare them before deciding which model works best.
+
+4.  How will you evaluate model performance?
+
+    -   We will use precision, recall, and F1 score to evaluate the model. These measures will help us understand how well the model identifies stations that actually become empty or full. For example, if the model says a station will not become empty but it does, that would be a false negative. We will also compare the model's performance for the 15, 30, and 60 minute predictions. This will help us determine how far in advance we can make useful predictions. We will use a time-based train/test split, meaning we will train the model using older data and test it on newer data. This better represents how the model would work in the real world.
+
+5.  Will model training be online (model updates whenever new data is ingested) or batch (at scheduled intervals)?
+
+    -   We plan to use batch training. The model will not be retrained every time new data is collected. Instead, we will retrain it on a regular schedule, such as once a week. The model can still make predictions frequently using new station data. For example, the model could make a new prediction every 15 minutes while the model itself is updated once a week.
+
+6.  Do you anticipate any large computational needs? If you think you will need to use large neural network models, LLMs, GPUs/TPUs, make sure to let me know here.
+
+    -   We do not expect to have large computational needs. Our data will mainly be structured Citi Bike, weather, and transportation data. We plan to use models such as logistic regression and Random Forest, which can run on regular computers. We do not expect to need large neural networks, LLMs, GPUs, or TPUs. The main challenge will likely be organizing and combining the different datasets rather than training the model.
+
+7.  The key midterm check for this project is the development of a minimally viable product, which will demonstrate feasibility and which you will iteratively improve. What does your minimally viable product look like?
+
+    -   Our minimally viable product would be a risk meter for Citi Bike stations. It would predict whether a station is likely to become empty or full within the next 15, 30, or 60 minutes. The MVP would show that we can use current station information, past bike usage, and outside data, such as weather to make useful predictions. We could then improve the system by adding more data, testing different models, and comparing different prediction times.
+
+\
